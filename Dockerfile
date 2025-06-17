@@ -1,20 +1,19 @@
-FROM python:3.9
+FROM Python:3.9
+WORKDIR /app
 
-WORKDIR /app/backend
+copy requrirements.txt /app
 
-COPY requirements.txt /app/backend
-RUN apt-get update \
+run sudo apt-get update 
     && apt-get upgrade -y \
     && apt-get install -y gcc default-libmysqlclient-dev pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/lists/*
 
-
-# Install app dependencies
 RUN pip install mysqlclient
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install requrirements.txt
 
-COPY . /app/backend
+copy . /app
 
 EXPOSE 8000
+
 #RUN python manage.py migrate
 #RUN python manage.py makemigrations
