@@ -35,6 +35,8 @@ db:
   environment:
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=test_db
+  port:
+    - "3306:3306"
   volume:
    - ./data/mysql/db/:/var/lib/mysql
   healthcheck:
